@@ -138,11 +138,11 @@ var removeElement = function(nums, val) {
 // };
 
 
-""" Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+// """ Given an array nums and a value val, remove all instances of that value in-place and return the new length.
 
-Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+// Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 
-The order of elements can be changed. It doesn't matter what you leave beyond the new length. """
+// The order of elements can be changed. It doesn't matter what you leave beyond the new length. """
 
 var removeElement = function(nums, val) {
     nums.filter(num=>num!=val)
@@ -196,7 +196,7 @@ var removeDuplicates = function(nums) {
   var checkIfExist = function(arr) {
     arr.sort()
     for (let i=0; i<arr.length; i++) {
-      if (arr[i]!=0 && arr.includes(arr[i]*2) || arr.includes(arr[i]/2) ) {
+      if (arr[i]!=0 && (arr.includes(arr[i]*2) || arr.includes(arr[i]/2) )) {
         return true
       } else if (arr[i]==0 && arr[i+1]==0){
           return true
@@ -204,6 +204,8 @@ var removeDuplicates = function(nums) {
     }
     return false
 };
+
+checkIfExist([-2,0,10,-19,4,6,-8])
 
 var checkIfExist = function(arr) {
     let hold = [];
