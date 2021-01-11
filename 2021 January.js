@@ -1,3 +1,5 @@
+// Leetcode Top Interview Questions
+
 // Day 2: Loops
 // https://www.hackerrank.com/challenges/js10-loops/problem?h_r=next-challenge&h_v=zen
 
@@ -103,4 +105,42 @@ var singleNumber = function(nums) {
 
 singleNumber([4,1,2,1,2,2])
 
+// Move Zeroes
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/567/
+var moveZeroes = function(nums) {
+    for(let i=nums.length; i>=0; i--){
+        if(nums[i]===0){
+            nums.splice(i, 1)
+            nums.push(0)
+        }
+    }
+    return nums
+};
 
+// Two Sum
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/546/
+var twoSum = function(nums, target) {
+    for(let i=0; i<nums.length; i++){
+        let x = target-nums[i]
+        if(nums.slice(i+1, nums.length).includes(x)) {
+          return [i, nums.lastIndexOf(x)]
+        }
+  }
+};
+
+// Plus One
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/559/
+var plusOne = function(digits) {
+    let i = digits.length-1
+    while(true){
+        digits[i] = parseInt(digits[i])+1
+        if(digits[i] == 10){
+        digits[i] = 0
+        if(i==0) {
+            digits.unshift(1)
+            return digits
+            }
+        } else return digits
+        i--
+    }
+};
