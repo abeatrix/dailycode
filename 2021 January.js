@@ -144,3 +144,90 @@ var plusOne = function(digits) {
         i--
     }
 };
+
+// HackerRank
+function compareTriplets(a, b) {
+    let result = [0, 0]
+    for(let i=0; i<a.length; i++){
+        if(a[i]>b[i])result[0]++
+        else if (b[i]>a[i]) result[1]++
+    }
+  return result
+}
+
+// A Very Big Sum
+// https://www.hackerrank.com/challenges/a-very-big-sum
+function aVeryBigSum(ar) {
+    const sum = (num1, num2) => num1+num2;
+    return ar.reduce(sum)
+}
+function aVeryBigSum(ar) {
+    let sum = 0
+    ar.forEach(num => sum+=num)
+    return sum
+}
+
+// Diagonal Difference
+// https://www.hackerrank.com/challenges/diagonal-difference
+function diagonalDifference(arr) {
+    // Write your code here
+    let len = arr.length-1, sumX=0, sumY=0;
+    for(let i=0; i<=len; i++){
+        sumX+=arr[i][i]
+        sumY+=arr[i][len-i]
+    }
+    return Math.abs(sumX-sumY)
+}
+
+
+// plusMinus
+//https://www.hackerrank.com/challenges/plus-minus
+function plusMinus(arr) {
+    let ans = [0, 0, 0], len = arr.length;
+    for(let i=0; i<len; i++){
+      if(arr[i]===0) ans[2]=(parseFloat(ans[2])+parseFloat(1/len))
+      else if(arr[i]<0) ans[1]=(parseFloat(ans[1])+parseFloat(1/len))
+      else ans[0]=(parseFloat(ans[0])+parseFloat(1/len))
+    }
+    return ans.forEach(num=>console.log(num.toFixed(6)))
+  }
+
+//
+
+//staircase
+//https://www.hackerrank.com/challenges/staircase
+function staircase(n) {
+    for(let i=0; i<n; i++){
+        console.log( (' '.repeat(n-i-1))+'#'.repeat(i+1) )
+    }
+}
+
+// Mini-Max Sum
+
+function miniMaxSum(arr) {
+    arr.sort()
+    console.log (arr.slice(0, 4).reduce((a, b) => a+b) + ' ' + arr.slice(1, 5).reduce((a, b) => a+b))
+
+}
+
+//https://www.hackerrank.com/challenges/birthday-cake-candles
+function birthdayCakeCandles(candles) {
+    // Write your code here
+    for(let i=candles.length, max=Math.max(...candles); i>=0; i--){
+        if(candles[i]!=max) candles.splice(i, 1)
+    }
+    return candles.length
+}
+
+//Time Conversion
+function timeConversion(s) {
+    /*
+     * Write your code here.
+     */
+
+    if(s.slice(-2) === 'AM' || s.slice(0, 2)=="12") {
+        if(s.slice(0, 2)=="12" && s.slice(-2) === 'AM') return('00'+s.slice(2, 8))
+        else return (s.slice(0, 8))
+    }
+    else return((parseInt(s.slice(0, 2))+12)+s.slice(2, 8))
+}
