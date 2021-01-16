@@ -231,3 +231,140 @@ function timeConversion(s) {
     }
     else return((parseInt(s.slice(0, 2))+12)+s.slice(2, 8))
 }
+
+
+// JS 10day Challenge - Factorial
+// https://www.hackerrank.com/challenges/js10-function/problem
+// recursive
+function factorial(n) {
+    if (n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n-1);
+    }
+}
+
+// HackerRank 10day JS Challenge - Factorial
+// https://www.hackerrank.com/challenges/js10-function/problem
+// recursive
+function factorial(n) {
+    if (n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n-1);
+    }
+}
+
+function factorial(n){
+    let x = n
+    for(let i=n-1; i>0; i--){
+        x=x*i
+    }
+    return x
+}
+
+// HackerRank 10day JS Challenge - Factorial
+//https://www.hackerrank.com/challenges/js10-throw
+function isPositive(a) {
+    if(a<0) throw({message: 'Negative Error'});
+    else if(a===0) throw ({message: 'Zero Error'});
+    return 'YES'
+}
+
+// HackerRank 10day JS Challenge - Day 5: Inheritance
+// https://www.hackerrank.com/challenges/js10-inheritance/problem
+class Rectangle {
+    constructor(w, h) {
+        this.w = w;
+        this.h = h;
+    }
+}
+
+/*
+The Prototype Property
+The drawback of internally defining the getInformation function is that it recreates that function every time we create a new Fruit object. Fortunately, every function in JavaScript has something called a prototype property, which is empty by default. We can think of a function's prototype as an object blueprint or paradigm; when we add methods and properties to the prototype, they are accessible to all instances of that function. This is especially useful for inheritance (discussed below).
+*/
+Rectangle.prototype.area = function(){
+    return (this.w * this.h);
+}
+
+class Square extends Rectangle {
+    constructor(w) {
+        super(w,w)
+    }
+}
+
+
+// HackerRank 10day JS Challenge - Day 8: Create a Button
+// https://www.hackerrank.com/challenges/js10-create-a-button
+//button.js
+let clickMeButton = document.createElement('button');
+let counter = 0
+clickMeButton.id = 'btn';
+clickMeButton.innerHTML = counter;
+document.body.appendChild(clickMeButton);
+
+btn.onclick = () => {
+    counter++
+    btn.innerHTML = counter
+}
+
+//Or
+let counter = 0
+btn.innerHTML = counter;
+
+btn.onclick = () => {
+    counter++
+    btn.innerHTML = counter
+}
+
+// Day 1: Let and Const
+// https://www.hackerrank.com/challenges/js10-let-and-const/problem
+function main() {
+    const PI = Math.PI
+    let r = parseFloat(readLine());
+
+    // Print the area of the circle:
+    console.log(PI*(r*r))
+
+    // Print the perimeter of the circle:
+    console.log(2*PI*r)
+    try {
+        // Attempt to redefine the value of constant variable PI
+        PI = 0;
+        // Attempt to print the value of PI
+        console.log(PI);
+    } catch(error) {
+        console.error("You correctly declared 'PI' as a constant.");
+    }
+}
+
+// HackerRank 10day JS Challenge - Day 8: Buttons Container
+//https://www.hackerrank.com/challenges/js10-buttons-container
+// button .JS
+let container = document.createElement('div')
+container.id = 'btns'
+document.body.appendChild(container);
+
+let i=1
+while(i<10){
+    let btn = document.createElement('button')
+    btn.id = 'btn'+i;
+    btn.innerHTML = i;
+    btns.appendChild(btn);
+    i++
+}
+
+btn5.onclick = () => {
+    let diff = [3,-1,-1,3,0,-3,1,1,-3]
+    let nums = []
+    for(let i=1; i<10; i++){
+        let btni = document.getElementById('btn'+i)
+        nums.push(btni.innerHTML)
+    }
+    for(let i=1; i<10; i++){
+        let btni = document.getElementById('btn'+i)
+        btni.innerHTML = nums[i-1+diff[i-1]]
+    }
+}
+
