@@ -537,3 +537,111 @@ function designerPdfViewer(h, word) {
     chars.forEach((char, i) => chars.splice(i, 1, (h[char.charCodeAt(0) - 97])))
     return chars.length*Math.max(...chars)
 }
+
+
+//Rotate Image -in place with no extra memory
+//https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/770/
+var rotate = function(matrix) {
+    for(let i=0; i<matrix.length; i++){
+      for(let j=0; j<matrix.length; j++){
+        matrix[j].splice(matrix[j].length-i,0, matrix[i][j])
+      }
+      matrix[i].splice(0, matrix.length)
+    }
+  };
+
+
+  var reverseString = function(s) {
+    for(let i=0, len = s.length-1; i<(Math.floor(len/2)) ; i++){
+      [s[i], s[len-i]] = [s[len-i], s[i]]
+    }
+  };
+
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/880/
+var reverse = function(x) {
+    let num = x.toString().split("").reverse()
+    if (num[0]==="0") num.shift()
+    if (num[num.length-1] === "-") num.unshift(num.pop())
+    if ( num.join("") > Math.pow(2, 31) -1 || num.join("") < Math.pow(-2, 31)) return 0
+    else return num.join("")
+};
+
+// First Unique Character in a String
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/881/
+var firstUniqChar = function(s) {
+    let arr = s.split("")
+    for(let i=0; i<arr.length; i++){
+        if (arr.indexOf(arr[i]) === arr.lastIndexOf(arr[i])) return i
+    }
+    return -1
+};
+
+// Valid Anagram
+var isAnagram = function(s, t) {
+    let a = s.split("").sort()
+    let b = t.split("").sort()
+    if (a.length != b.length) return false
+    for(let i=0; i<a.length; i++) {
+      if(a[i]!=b[i]) return false
+    }
+    return true
+  };
+
+// Valid Palindrome
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/883/
+
+var isPalindrome = function(s) {
+    let arr = s.toLowerCase().replace(/[^a-z0-9]/ig, "").split("");
+    let l = 0, r = arr.length-1
+    while (l<r){
+      if(arr[l]!=arr[r]) return false
+      l++
+      r--
+    }
+    return true
+  };
+
+//  String to Integer (atoi)
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/884/
+function reverseString(s) {
+    let trimmed = s.trim()
+    let num = parseInt(trimmed, 10)
+
+    if (isNaN(num)) {
+        return 0
+    } else if (num >= Math.pow(2, 31)) {
+        return Math.pow(2, 31) - 1
+    } else if (num <= Math.pow(-2, 31)) {
+        return Math.pow(-2, 31)
+    } else {
+        return num
+    }
+}
+
+// read
+function reverseString(s) {
+    let i = 0;
+    let num = ""
+    if(s.length<1) return 0
+    if (s[0] === " ") s = s.replace(/ /g, '')
+    while (i<s.length){
+      if ((s[i] === "+"|| s[i] === "-") && i===0) num+=s[i];
+      else if (Number(s[i])) num+=s[i]
+      else if (!Number(s[i]) && Number(parseInt(num))) break
+      else return 0
+      i++
+    }
+
+    if (parseInt(num) >= Math.pow(2, 31)) return Math.pow(2, 31)-1
+    else if (parseInt(num) <= Math.pow(-2, 31)) return Math.pow(-2, 31)
+    else if (!Number(parseInt(num))) return 0
+    return parseInt(num)
+  }
+  reverseString("21474836460")
+
+// Implement strStr()
+// https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/885/
+function reverseString(haystack, needle) {
+    if(haystack.includes(needle)) return haystack.indexOf(needle)
+    else return -1
+  }
