@@ -368,3 +368,172 @@ btn5.onclick = () => {
     }
 }
 
+//LC: 1282. Group the People Given the Group Size They Belong To - Medium
+// https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/
+var groupThePeople = function(groupSizes) {
+    let found = false
+  let group = [[0]]
+  for(let i=1; i<groupSizes.length; i++){
+    for(let j in group){
+      if(groupSizes[group[j][0]]==groupSizes[i]){
+        if(group[j].length<groupSizes[group[j][0]]) group[j].push(i)
+        else {
+          group.unshift([i])
+        }
+        found = true
+        break;
+      }
+    }
+    found ? null : group.push([i]);
+    found = false;
+  }
+  return group
+};
+groupThePeople([3,3,3,3,3,1,3])
+//Hashtable
+function groupThePeople(groupSizes) {
+    const solArr = [];
+    const storage = {};
+
+    for (let id in groupSizes) {
+        const groupSize = groupSizes[id];
+
+        if (!storage[groupSize]) storage[groupSize] = [];
+
+        if (storage[groupSize].length === groupSize) {
+            solArr.push(storage[groupSize]);
+            storage[groupSize] = [id];
+        } else {
+            storage[groupSize].push(id);
+        }
+    }
+
+    for (const groupSize in storage) {
+        solArr.push(storage[groupSize]);
+    }
+
+    return solArr;
+}
+
+//Quickes
+function groupThePeople(groupSizes) {
+    let result = [];
+    let temp = {};
+
+    for (let [index, size] of groupSizes.entries()) {
+    console.log(temp[size])
+    console.log(size)
+        if (!temp[size]) {
+            temp[size] = [index]
+        } else {
+            temp[size].push(index)
+        }
+
+        if (temp[size].length === size) {
+            result.push([...temp[size]])
+            temp[size] = []
+        }
+    }
+
+    return result;
+}
+
+// https://www.hackerrank.com/challenges/grading/problem
+function gradingStudents(grades) {
+    // Write your code here
+    for(let i=0; i<grades.length; i++){
+    let num = Math.ceil(grades[i]/5)*5
+    if(grades[i]>=38 && num-grades[i]<3)
+      grades[i] = num
+    }
+    return grades
+}
+
+// Extra Long Factorials - Medium
+// https://www.hackerrank.com/challenges/extra-long-factorials/problem
+//Recursion - but javascript could not store long integer so switched to python
+function extraLongFactorials(n) {
+    let num = n, i = n
+    function re(){
+      if(i<2) console.log(num);
+      num *= (i-1)
+      i--
+      return re()
+    }
+    return re()
+
+  }
+
+
+// Python
+def extraLongFactorials(n):
+    i = n-1
+    num = n
+    while i>0:
+        num=num*i
+        i-=1
+    print(num)
+
+
+// Climbing the Leaderboard
+// https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem
+// using loops
+
+function climbingLeaderboard(scores, alice) {
+    const ranking = [...new Set(scores)]
+    let rank = ranking.length-1
+
+    alice.forEach((score, i) => {
+    while(score>ranking[rank] && rank>0)rank--;
+    alice.splice(i, 1, (score >= ranking[rank] ? rank+1 : rank+2 ));
+    })
+
+    return alice
+}
+climbingLeaderboard([100,90,90,90,80,75,60],[50,65,77,90,102])
+
+function climbingLeaderboard(scores, alice) {
+    for(let i=scores.length-1; i>=0; i--) {
+      while(scores[i]===scores[i-1])
+        scores.splice(i, 1)
+    }
+    let ranks = []
+    for(let i=0; i<alice.length; i++){
+      for(let j=scores.length-1; j>=0; j--){
+        if(alice[i]<scores[scores.length-1]) {
+          scores.push(alice[i])
+          ranks.push(j+2)
+          break
+        }
+        else if(alice[i]>=scores[j] && alice[i]<scores[j-1]) {
+          if(alice!=scores[j]) scores.splice(j, 0, alice[i])
+          else scores.splice(j, 1, alice[i])
+          ranks.push(j+1)
+          break
+        }
+        else if(alice[i]>scores[0]){
+          scores.unshift(alice[i])
+          ranks.push(1)
+          break
+        }
+      }
+    }
+    return ranks
+}
+
+// The Hurdle Race
+// https://www.hackerrank.com/challenges/the-hurdle-race/problem?h_r=next-challenge&h_v=zen
+function hurdleRace(k, height) {
+    if(k >= Math.max(...height)) return 0
+    else return Math.max(...height)-k
+
+  }
+  hurdleRace(5, [2,7,4,3,5])
+
+// Designer PDF Viewer
+// https://www.hackerrank.com/challenges/designer-pdf-viewer/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+function designerPdfViewer(h, word) {
+    let chars = word.split("")
+    chars.forEach((char, i) => chars.splice(i, 1, (h[char.charCodeAt(0) - 97])))
+    return chars.length*Math.max(...chars)
+}
