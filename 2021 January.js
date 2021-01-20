@@ -81,7 +81,7 @@ var removeDuplicates = function(nums) {
 };
 
 
-//
+//https://leetcode.com/problems/single-number/
 var singleNumber = function(nums) {
     nums.sort()
     for(let i=0;i<nums.length;i+=2){
@@ -645,3 +645,327 @@ function reverseString(haystack, needle) {
     if(haystack.includes(needle)) return haystack.indexOf(needle)
     else return -1
   }
+
+// Sales by Match
+// https://www.hackerrank.com/challenges/sock-merchant
+function sockMerchant(n, ar) {
+    let numCount = {}, count = 0;
+    ar.forEach(i=> { numCount[i] = (numCount[i]||0) + 1;});
+    for(let num in numCount) count+= Math.floor(numCount[num]/2);
+    return count;
+  };
+
+  sockMerchant(9, [10,20,20,10,10,30,50,10,20])
+
+  function sockMerchant(n, arr) {
+    let numCount = {}, count = 0;
+    for(let num of arr) { numCount[num] = (numCount[num]||0) + 1;};
+    for(let num in numCount) {count+= Math.floor(numCount[num]/2)};
+    return count;
+  };
+
+  sockMerchant(9, [10,20,20,10,10,30,50,10,20])
+
+
+// Recursion Problem Set
+// Write a function called productOfArray which takes in an array of numbers and returns the product of them all.
+function productOfArray(nums) {
+    let count = 0
+
+    function product(count){
+        if(count===nums.length-1) return nums[count];
+        else return nums[count] *product(count+1)
+    }
+
+    return product(count)
+}
+
+//Recursion
+// write a function called recursiveRange which accepts a number and adds up all the numbers from 0 to the number passed to the function
+function recursiveRange(n){
+    if(n===0) return 0;
+    else return n+recursiveRange(n-1)
+}
+
+// Fibonacci sequence using Recursion
+function fib(n){
+    if(n<=2) return 1;
+    else return fib(n-1)+fib(n-2)
+}
+fib(4)
+
+//Recursion
+// Write a recursive function that accepts a string and returns the string in reverse
+function reverse(s){
+    // add whatever parameters you deem necessary - good luck!
+    let res = '', n = s.length-1
+
+    function re(){
+        if(n<0) {
+            return res
+        } else {
+            res+=s[n]
+            n--
+            return re()
+        }
+    }
+    return re()
+}
+// without helper function
+function reverse(s){
+    let res = '';
+
+    if(s.length===0) return res
+    else res+=s.slice(-1)
+
+    res+=reverse(s.slice(0, -1))
+    return res;
+}
+
+function reverse(str){
+	if(str.length <= 1) return str;
+	return reverse(str.slice(1)) + str[0];
+}
+
+
+// write a recursive function that returns true if the string passed to it is a palindrome; otherwise it returns false
+function isPalindrome(s){
+
+    if(s.length<=1) return true
+    if(s[0]===s.slice(-1)) return isPalindrome(s.slice(1, -1))
+    return false
+
+}
+isPalindrome('amanaplanacanalpanama')
+
+// write a recursive function that acceptes an array and a callback. The function returns true if a single value in the array returns true when apssed to the callback. Otherwise it returns false.
+// SAMPLE INPUT / OUTPUT
+// const isOdd = val => val % 2 !== 0;
+
+// someRecursive([1,2,3,4], isOdd) // true
+// someRecursive([4,6,8,9], isOdd) // true
+// someRecursive([4,6,8], isOdd) // false
+// someRecursive([4,6,8], val => val > 10); // false
+
+// my solution
+function someRecursive(arr, func){
+    if(arr.length===0) return false
+    if(!func(arr[0])) return someRecursive(arr.slice(1), func)
+    return true
+}
+
+//Recursion
+//write a recursive function that accepts an array of arrays and return a new array with all values flattened.
+// my solution with while loop
+function flatten(arr){
+    let final = [], i = 0;
+
+    while (i<arr.length){
+        if(arr[i].length) final = final.concat(flatten(arr[i]))
+        else final.push(arr[i])
+        i++
+    }
+
+    return final
+}
+
+flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])
+
+function flatten(arr){
+    let final = []
+
+    for(let i=0; i<arr.length; i++){
+
+      // if arr[i] is an array
+      if(arr[i].length) final = final.concat(flatten(arr[i]))
+
+      else final.push(arr[i])
+    }
+
+    return final
+}
+
+
+// flatten([1, 2, 3, [4, 5] ]) // [1, 2, 3, 4, 5]
+// flatten([1, [2, [3, 4], [[5]]]]) // [1, 2, 3, 4, 5]
+// flatten([[1],[2],[3]]) // [1,2,3]
+// flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1,2,3
+
+
+//Recursion
+// given an array of strings, capitalize the first letteer of each string
+function capitalizeFirst (arr) {
+    let answer = [];
+
+    if(arr.length===0) return answer
+
+    else {
+      let word = arr[0].charAt(0).toUpperCase() + arr[0].substring(1)
+      answer.push(word);
+    }
+    answer = answer.concat(capitalizeFirst(arr.slice(1)))
+    return answer
+}
+
+
+capitalizeFirst(['car','taco','banana']);
+
+//Recursion
+// return the sum of all even numbers in an object which may contain nested objects
+// my solution
+function nestedEvenSum (obj) {
+    let nums = 0
+
+    for(let v in obj){
+        if (typeof obj[v] === 'object') nums+= (nestedEvenSum(obj[v]))
+        else Number(obj[v])%2===0 ? nums+=Number(obj[v]) : null
+    }
+
+    return nums
+}
+
+
+var obj1 = {
+outer: 2,
+obj: {
+    inner: 2,
+    otherObj: {
+    superInner: 2,
+    notANumber: true,
+    alsoNotANumber: "yup"
+    }
+}
+}
+
+var obj2 = {
+a: 2,
+b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+c: {c: {c: 2}, cc: 'ball', ccc: 5},
+d: 1,
+e: {e: {e: 2}, ee: 'car'}
+};
+
+nestedEvenSum(obj1); // 6
+nestedEvenSum(obj2); // 10
+
+// Recursion
+// captailize all words in array
+function capitalizeWords (arr) {
+    // add whatever parameters you deem necessary - good luck!
+    let caps = []
+
+    if(arr.length===0) return caps
+    else caps.push(arr[0].toUpperCase())
+
+    caps = caps.concat(capitalizeWords(arr.slice(1)))
+    return caps
+}
+
+capitalizeWords(['i', 'am', 'learning', 'recursion'])
+
+
+// Recursion
+// takes in an object and finds all of the values which are numbers and converts them to strings.
+// in place
+  function stringifyNumbers(obj){
+    for (let v in obj){
+        if(typeof obj[v] === 'object') stringifyNumbers(obj[v])
+        if( Number.isInteger(obj[v]) ) obj[v] = obj[v].toString()
+    }
+    return obj
+}
+
+
+// return new object
+function stringifyNumbers(obj) {
+    var answer = {};
+    for (var v in obj) {
+      if (Number.isInteger(obj[v])) {
+        answer[v] = obj[v].toString();
+      } else if (typeof obj[v] === 'object' && !Array.isArray(obj[v])) {
+        answer[v] = stringifyNumbers(obj[v]);
+      } else {
+        answer[v] = obj[v];
+      }
+    }
+    return answer;
+}
+
+/*
+let obj = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
+    }
+}
+/*
+
+stringifyNumbers(obj)
+
+/*
+{
+    num: "1",
+    test: [],
+    data: {
+        val: "4",
+        info: {
+            isRight: true,
+            random: "66"
+        }
+    }
+}
+*/
+
+// Recursion
+// accepts an object and returns an array of all the values in the object that are string
+// my solution
+function collectStrings(obj){
+    let answer = []
+
+    for(let k in obj){
+      if(typeof obj[k] === 'string') answer.push(obj[k])
+      else if(typeof obj[k] === 'object') {
+        answer = answer.concat(collectStrings(obj[k]))
+      }
+    }
+
+    return answer
+}
+
+const obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+collectStrings(obj) // ["foo", "bar", "baz"])
+
+//textbook solution
+function collectStrings(obj) {
+    var stringsArr = [];
+    for(var key in obj) {
+        if(typeof obj[key] === 'string') {
+            stringsArr.push(obj[key]);
+        }
+        else if(typeof obj[key] === 'object') {
+            stringsArr = stringsArr.concat(collectStrings(obj[key]));
+        }
+    }
+
+    return stringsArr;
+}
