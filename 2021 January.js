@@ -969,3 +969,24 @@ function collectStrings(obj) {
 
     return stringsArr;
 }
+
+// LINEAR SEARCH
+function linearSearch(s, v){
+    // add whatever parameters you deem necessary - good luck!
+    for (let i=0; i<s.length; i++) {
+        if(s[i]===v) return i
+    }
+    return -1
+  }
+
+// BINARY SEARCH
+function binarySearch(s, t){
+    let l=0, r=s.length-1;
+    while (l<=r){
+      let m = Math.floor((l+r)/2)
+      if (s[m] === t) return m;
+      else if (s[m] < t) l = m+1
+      else r = m-1
+    }
+    return -1
+  }
