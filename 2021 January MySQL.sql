@@ -149,7 +149,153 @@ SELECT H.HACKER_ID , H.NAME
 FROM SUBMISSIONS S
 JOIN HACKERS H ON H.HACKER_ID=S.HACKER_ID
 JOIN CHALLENGES C ON C.CHALLENGE_ID=S.CHALLENGE_ID
-JOIN DIFFICULTY D ON D.DIFFICULTY_LEVEL=C.DIFFICULTY_LEVEL WHERE D.SCORE=S.SCORE
+JOIN DIFFICULTY D ON D.DIFFICULTY_LEVEL=C.DIFFICULTY_LEVEL
+WHERE D.SCORE=S.SCORE
 GROUP BY H.HACKER_ID , H.NAME
 HAVING COUNT(S.SCORE)>1
 ORDER BY COUNT(S.SCORE) DESC, S.HACKER_ID;
+
+--The total score of a hacker is the sum of their maximum scores for all of the challenges.
+--Write a query to print the hacker_id, name, and total score of the hackers ordered by the descending score.
+--If more than one hacker achieved the same total score, then sort the result by ascending hacker_id.
+--Exclude all hackers with a total score of 0 from your result.
+SELECT S.HACKER_ID, H.NAME, SUM(S.SCORE) AS TOTAL
+FROM SUBMISSIONS S
+JOIN HACKERS H ON H.HACKER_ID=S.HACKER_ID
+WHERE TOTAL!=0
+ORDER BY TOTAL DESC, S.HACKER_ID;
+
+-- Ollivander's Inventory
+-- Harry Potter and his friends are at Ollivander's with Ron, finally replacing Charlie's old broken wand.
+-- Hermione decides the best way to choose is by determining the minimum number of gold galleons needed to buy each non-evil wand of high power and age.
+-- Write a query to print the id, age, coins_needed, and power of the wands that Ron's interested in, sorted in order of descending power.
+-- If more than one wand has same power, sort the result in order of descending age.
+
+--+------------------+-----------------+ +------------------+-----------------+
+--| Field            |        Type     || Field            |        Type     |
+--+------------------+-----------------++------------------+-----------------+
+--| ID               |      INTEGER    || CODE             |      INTEGER    |
+--| CODE             |      INTEGER    || AGE              |      INTEGER    |
+--| COINS_NEEDED     |      INTEGER    || IS_EVIL          |      INTEGER    |
+--| POWER            |      INTEGER    ||                  |                 |
+--+------------------+-----------------++------------------+-----------------+
+
+SELECT W.ID, WP.AGE, W.COINS_NEEDED, W.POWER
+FROM WANDS W
+INNER JOIN WANDS_PROPERTY WP
+ON WP.CODE=W.CODE
+WHERE WP.IS_EVIL=0 AND W.COINS_NEEDED=(
+    SELECT MIN(COINS_NEEDED)
+    FROM WANDS HW INNER JOIN WANDS_PROPERTY HWP
+    ON HW.CODE=HWP.CODE
+    WHERE HW.POWER = W.POWER AND HWP.AGE = WP.AGE)
+ORDER BY W.POWER DESC, WP.AGE DESC;
+
+-- TEMP TABLE
+CREATE TEMPORARY TABLE HARRY
+SELECT MIN(COINS_NEEDED) FROM WANDS HW INNER JOIN WANDS_PROPERTY HWP
+ON WP.CODE=W.CODE
+WHERE HW.POWER = WANDS.POWER AND HWP.AGE = WP.AGE;
+
+SELECT W.ID, WP.AGE, W.COINS_NEEDED, W.POWER
+FROM WANDS W
+INNER JOIN WANDS_PROPERTY WP
+ON WP.CODE=W.CODE
+WHERE WP.IS_EVIL=0 AND W.COINS_NEEDED=HARRY.COINS_NEEDED
+ORDER BY W.POWER DESC, AGE DESC;
+
+-- Challenges
+-- Julia asked her students to create some coding challenges.
+-- Write a query to print the hacker_id, name, and the total number of challenges created by each student.
+-- Sort your results by the total number of challenges in descending order.
+-- If more than one student created the same number of challenges, then sort the result by hacker_id.
+-- If more than one student created the same number of challenges and the count is less than the maximum number of challenges created, then exclude those students from the result.
+
+--HACKERS / CHALLENGES
+--+------------------+-----------------+
+--| Field            |        Type     |
+--+------------------+-----------------+
+--| HACK_ID          |      INTEGER    |
+--| NAME             |      INTEGER    |
+--+------------------+-----------------+
+--+------------------+-----------------+
+--| Field            |        Type     |
+--+------------------+-----------------+
+--| CHALLENGE_ID     |      INTEGER    |
+--| HACK_ID          |      INTEGER    |
+--+------------------+-----------------+
+-- MAX
+SELECT MAX(CHALCOUNT) MAXCHAL FROM (
+SELECT CC.HACKER_ID, COUNT(CC.HACKER_ID) CHALCOUNT
+FROM CHALLENGES CC
+GROUP BY CC.HACKER_ID) FINDMAX;
+--or
+SELECT COUNT(CC.cha)
+FROM CHALLENGES CC
+GROUP BY CC.HACKER_ID
+ORDER BY COUNT(*) DESC
+LIMIT 1
+
+-- COUNT
+(SELECT TTCHAL
+FROM (
+    SELECT TTC.HACKER_ID, count(TTC.HACKER_ID) as TTCHAL
+    FROM CHALLENGES TTC
+    GROUP BY TTC.HACKER_ID) CHALNUMS
+GROUP BY TTCHAL
+HAVING COUNT(TTCHAL)<2) UNIQUE
+
+create table HACKERS(HACKER_ID integer, name varchar(100));
+insert into HACKERS(HACKER_ID, name) values(1, "a1");
+insert into HACKERS(HACKER_ID, name) values(2, "c2");
+insert into HACKERS(HACKER_ID, name) values(3, "d3");
+insert into HACKERS(HACKER_ID, name) values(4, "e4");
+select * from HACKERS;
+create table CHALLENGES(HACKER_ID integer, cha varchar(100));
+insert into CHALLENGES(HACKER_ID, cha) values(1, "a");
+insert into CHALLENGES(HACKER_ID, cha) values(1, "b");
+insert into CHALLENGES(HACKER_ID, cha) values(2, "c");
+insert into CHALLENGES(HACKER_ID, cha) values(3, "d");
+insert into CHALLENGES(HACKER_ID, cha) values(3, "e");
+insert into CHALLENGES(HACKER_ID, cha) values(3, "e");
+insert into CHALLENGES(HACKER_ID, cha) values(4, "e");
+insert into CHALLENGES(HACKER_ID, cha) values(4, "e");
+select * from CHALLENGES;
+-- Your code here!
+SELECT C.HACKER_ID, H.NAME, COUNT(C.HACKER_ID) AS CHALLENGES_CREATED
+FROM CHALLENGES C
+INNER JOIN HACKERS H
+ON H.HACKER_ID=C.HACKER_ID
+GROUP BY C.HACKER_ID, H.NAME
+HAVING CHALLENGES_CREATED = (SELECT MAX(CHALCOUNT) MAXCHAL FROM (
+    SELECT CCC.HACKER_ID, COUNT(CCC.HACKER_ID) CHALCOUNT
+    FROM CHALLENGES CCC
+    GROUP BY CCC.HACKER_ID) FINDMAX)
+OR CHALLENGES_CREATED NOT IN (SELECT COUNT(C2.CHALLENGE_ID)
+    FROM CHALLENGES AS C2
+    GROUP BY C2.HACKER_ID
+    HAVING C2.HACKER_ID <> C.HACKER_ID)
+ORDER BY CHALLENGES_CREATED DESC, C.HACKER_ID;
+
+-- Your code here! doesn't work
+SELECT C.HACKER_ID, H.NAME, COUNT(C.HACKER_ID) AS CHALLENGES_CREATED
+FROM CHALLENGES C
+INNER JOIN HACKERS H ON H.HACKER_ID=C.HACKER_ID
+GROUP BY C.HACKER_ID, H.NAME
+HAVING CHALLENGES_CREATED !=(SELECT TTCHAL
+    FROM (
+        SELECT TTC.HACKER_ID, count(TTC.HACKER_ID) as TTCHAL
+        FROM CHALLENGES TTC
+        GROUP BY TTC.HACKER_ID) CHALNUMS
+    GROUP BY TTCHAL
+    HAVING COUNT(TTCHAL)<2) UNINUMS
+ORDER BY CHALLENGES_CREATED DESC, C.HACKER_ID;
+
+--Population Density Difference
+--Query the difference between the maximum and minimum populations in CITY.
+SELECT (MAX(POPULATION)-MIN(POPULATION)) FROM CITY;
+
+--The Blunder
+--Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's 0 key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeroes removed), and the actual average salary.
+--Write a query calculating the amount of error (i.e.: actual-miscalculated average monthly salaries), and round it up to the next integer.
+SELECT CEIL(AVG(SALARY)-AVG(REPLACE(SALARY,"0",""))) FROM EMPLOYEES;
