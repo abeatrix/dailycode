@@ -990,3 +990,15 @@ function binarySearch(s, t){
     }
     return -1
   }
+
+// CAT AND MOUSE
+// https://www.hackerrank.com/challenges/cats-and-a-mouse/problem
+function catAndMouse(x, y, z) {
+    if (Math.abs(x-z)<Math.abs(z-y)) return "Cat A";
+    else if (Math.abs(x-z)>Math.abs(z-y)) return "Cat B";
+    else return "Mouse C"
+}
+
+function catAndMouse(x, y, z) {
+    return ((Math.abs(x-z)) < Math.abs(z-y)) ? 'Cat A' : ((Math.abs(x-z)) > Math.abs(z-y) ? 'Cat B' : 'Mouse C');
+}

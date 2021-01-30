@@ -76,7 +76,7 @@ SELECT NAME FROM STUDENTS WHERE MARKS > 75 ORDER BY RIGHT(NAME, 3), ID;
 --Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order.
 --If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order.
 
--- Write a query to help Eve.
+-- Write a query to help Eve. (WIP)
 SELECT
 CASE
     WHEN GRADES.GRADE >7 THEN NAME
