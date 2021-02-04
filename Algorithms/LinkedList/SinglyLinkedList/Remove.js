@@ -1,3 +1,14 @@
+// remove - removing a node from the linked list at a specific position
+/*
+1. if the index is less than zero or greater than the length, return undefined
+2. if the index is the same as the length-1, pop
+3. if the shift is 0, shift
+4. otherwise use the get method, access the node at the index-1
+5. set the next property on that node to be the next of the next node
+6. decrement the length
+7. return the value of the node removed
+*/
+
 class Node{
     constructor(val){
         this.val = val;
@@ -11,7 +22,6 @@ class SinglyLinkedList{
         this.tail = null;
         this.length = 0;
     }
-
     push(val){
         var newNode = new Node (val);
         if(!this.head){
@@ -24,13 +34,6 @@ class SinglyLinkedList{
         this.length ++;
         return this;
     }
-    traverse(){
-        let current = this.head;
-        while(current){
-            console.log(current.val);
-            current = current.next;
-        }
-    }
     get(index){
         if(index<0 || index >= this.length) return null;
         let current = this.head
@@ -40,17 +43,13 @@ class SinglyLinkedList{
         }
         return current;
     }
-    unshift(val) {
-        let newNode = new Node(val);
-        if(!this.head){
-            this.head = newNode;
-            this.tail = this.head;
-        } else {
-            newNode.next = this.head;
-            this.head = newNode;
-        }
-        this.length++
-        return this;
+    shift(val){
+        if(!this.head) return undefined;
+        let currentHead = this.head;
+        this.head = currentHead.next;
+        this.length--;
+        if(this.head === this.tail) this.tail = null;
+        return currentHead;
     }
     pop(){
         if(!this.head) return undefined;
@@ -69,34 +68,6 @@ class SinglyLinkedList{
         }
         return current;
     }
-    set(index, val){
-        const foundNode = this.get(index);
-        if(foundNode){
-            foundNode.val = val;
-            return true;
-        }
-        return false;
-    }
-    shift(val){
-        if(!this.head) return undefined;
-        let currentHead = this.head;
-        this.head = currentHead.next;
-        this.length--;
-        if(this.head === this.tail) this.tail = null;
-        return currentHead;
-    }
-    insert(val){
-        if(index<0 || index > this.length) return false;
-        if(index === this.length) return this.push(val);
-        if(index===0) return this.unshift(val);
-        const newNode = new Node(val);
-        let prev = this.get(index-1);
-        let indexNode = prev.next;
-        prev.next = newNode;
-        newNode.next = indexNode;
-        this.length++;
-        return true;
-    }
     remove(index){
         if(index<0||index > this.length) return undefined;
         if(index===this.length-1) return this.pop();
@@ -107,6 +78,7 @@ class SinglyLinkedList{
         this.length--;
         return nodeToRemove;
     }
+
 }
 
 var list = new SinglyLinkedList()
@@ -115,3 +87,4 @@ list.push(2)
 list.push(3)
 list.push(4)
 list.push(5)
+list.remove(2) // 3

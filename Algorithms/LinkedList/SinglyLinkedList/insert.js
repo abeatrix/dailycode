@@ -70,16 +70,16 @@ class SinglyLinkedList{
         return this;
     }
     insert(val){
-        if(index<0 || index > this.length) return false
+        if(index<0 || index > this.length) return false;
         if(index === this.length) return this.push(val);
-        if(index===0) return this.unshift(val)
+        if(index===0) return this.unshift(val);
         const newNode = new Node(val);
         let prev = this.get(index-1);
         let indexNode = prev.next;
         prev.next = newNode;
         newNode.next = indexNode;
-        this.length++
-        return true
+        this.length++;
+        return true;
     }
     // my solution
     // insert(index, val){
