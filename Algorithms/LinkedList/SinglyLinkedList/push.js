@@ -1,11 +1,13 @@
-class Node{
+// Push - add new node to end of list.
+
+class Node {
     constructor(val){
         this.val = val;
         this.next = null;
     }
 }
 
-class SinglyLinkedList{
+class SinglyLinkedList {
     constructor(){
         this.head = null;
         this.tail = null;
@@ -13,7 +15,7 @@ class SinglyLinkedList{
     }
 
     push(val){
-        var newNode = new Node (val);
+        let newNode = new Node(val);
         if(!this.head){
             this.head = newNode;
             this.tail = this.head;
@@ -21,18 +23,13 @@ class SinglyLinkedList{
             this.tail.next = newNode;
             this.tail = newNode;
         }
-        this.length ++;
+        this.length++;
         return this;
     }
-    traverse(){
-        let current = this.head;
-        while(current){
-            console.log(current.val);
-            current = current.next;
-        }
-    }
+
 }
 
-var list = new SinglyLinkedList()
-list.push("Hello")
-list.push("Goodbye")
+const list = new SinglyLinkedList();
+list.push('1');
+list.push('2');
+list.push('3');
