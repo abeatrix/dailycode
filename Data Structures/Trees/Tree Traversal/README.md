@@ -43,21 +43,32 @@ In depth-first search, we start by going deep. First we visit the root node, the
 - when planning your next move during a chess game, if you pick one move and figure out how far it could take you that's depth-first thinking
 
 ##### Depth-First Search - Pre-Order
+```
 From parent to child, left to right
+
             10
     6               15
 3       8       null    20
+
 Order = [10,6,3,8,15,20]
+```
 
 ##### Depth-First Search - Post-Order
+```
 From child to parent, left to right
+
             10
     6               15
 3       8       null    20
+
 Order = [3,8,6,20,15,10]
+```
 
 ##### Depth-First Search - In-Order
+```
             10
     6               15
 3       8       null    20
+
 Order = [3,6,8,10,15,20]
+```
