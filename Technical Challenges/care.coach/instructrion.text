@@ -1,0 +1,193 @@
+Hi Beatrix W,
+
+For your care.coach coding challenge, you have a total of up to 90 minutes to complete three sub-challenges using MySQL, Python, and Javascript, and to submit your solutions, starting from the timestamp of this email. Please use THIS FORM to submit all three of your solutions at the same time, before your time runs out. For your first sub-challenge, please copy/paste the following Python code into a new Python CodeBunk at https://codebunk.com/b/
+
+
+# A healthcare tech company has a number of activity records for each Health
+# Advocate (each "HA"). Each activity record is represented by a list of
+# 3-element tuples as follows:
+
+activity = [(1, '@login', None),
+(5, '@startVideo', 'Bob'),
+(20, '@startVideo', 'Thomas'),
+(66, '@stopVideo', 'Thomas'),
+(70, '@startVideo', 'Lily'),
+(75, '@stopVideo', 'Bob'),
+(78, '@stopVideo', 'Lily'),
+(100, '@logout', None),
+(150, '@login', None),
+(160, '@startVideo', 'Thomas'),
+(205, '@stopVideo', 'Thomas'),
+(210, '@logout', None) ]
+
+# For each tuple, the first element is timestamp, the second is an action (e.g.,
+# '@login', '@startVideo', '@stopVideo', '@logout'), and the last element is
+# the client. In detail, for example, (1, '@login', None) means this HA logged
+# in to our system at time 1, (100, '@logout', None) means this HA logged out of
+# our system at time 100, (5, '@startVideo', 'Bob') means that this HA started
+# a video stream with the client Bob at time 5, and (75, '@stopVideo', 'Bob')
+# means that this HA ended the video stream with Bob at time 75.
+
+# Although each HA is free to video stream with zero, one, or two clients at any
+# moment in time, the company encourages HAs to simultaneously video stream
+# with two clients as much as possible. Note that every HA can stream with a
+# maximum of two clients at any moment.
+
+# So, your challenge is to calculate both (A) the duration of this example HA's
+# logged in time, e.g. the sum of all periods between '@login' and '@logout', and
+# (B) the duration of this example HA's time spent simultaneously streaming video
+# with two clients.
+
+# For the above example, the correct result for (A) is 159 (1 to 100, 150 to 210),
+# and the correct result for (B) is 51 (20 to 66, 70 to 75).
+
+# Note that the activity list is sorted by timestamp, and you can assume all test data
+# are valid. Please be sure that your solution code outputs BOTH (A) and (B).
+
+# YOUR SOLUTION PYTHON CODE HERE
+
+
+Copy/paste your Python CodeBunk URL into your solution submission form (but don't submit the form yet).
+
+For your second sub-challenge, please start a new CodeBunk in a new tab and immediately change the language to MySQL to avoid a possible bug when switching from Python to MySQL, and then copy/paste the following MySQL code into your new CodeBunk:
+
+
+# The healthcare tech company has a MySQL table, named `chats`, recording all
+# messages between Health Advocates ("HAs") and clients.
+
+# The schema of table `chats` is as follows:
+
+create table chats
+(id int auto_increment primary key,
+ha varchar(10),
+client varchar(10),
+message varchar(255),
+timestamp bigint);
+
+# The data of table `chats` is below
+
+insert into chats
+values
+(1, 'Lily', 'Adam', '@startVideo', 1563733280),
+(2, 'Ava', 'Bob', '@startVideo', 1563733283),
+(3, 'Susan', 'Ruth', '@startVideo', 1563733290),
+(4, 'Lily', 'Adam', 'Good to see you again!', 1563733292),
+(5, 'Lily', 'Adam', 'Sure, I can do that for you.', 1563733310),
+(6, 'Lily', 'Adam', 'All set! No worries at all.', 1563733330),
+(7, 'Lily', 'Adam', '@stopVideo', 1563733334),
+(8, 'Ava', 'Bob', 'Yes, that is so funny! haha!', 1563733335),
+(9, 'Ava', 'Bob', '@stopVideo', 1563733356),
+(10, 'Susan', 'Bob', '@StartVideo', 1563733357),
+(11,'Susan', 'Bob', '@stopVideo', 1563733370),
+(12,'Susan', 'Ruth', 'Hello, Ruth, are you here?', 1563733371),
+(13,'Susan', 'Ruth', '@stopVideo', 1563733378);
+
+# A message can be either a command (e.g., @startVideo, and @stopVideo) or
+# a speech phrase sent from the HA to the client. An "interaction" between an
+# HA and a client is defined as the messages between that HA/client from
+# '@startVideo' to '@stopVideo' (inclusive).
+
+# For example, using the above values, the interaction between Lily and Adam
+# is as follows:
+# (1, 'Lily', 'Adam', '@startVideo', 1563733280),
+# (4, 'Lily', 'Adam', 'Good to see you again!', 1563733292),
+# (5, 'Lily', 'Adam', 'Sure, I can do that for you.', 1563733310),
+# (6, 'Lily', 'Adam', 'All set! No worries at all.', 1563733330),
+# (7, 'Lily', 'Adam', '@stopVideo', 1563733334)
+
+# And the interaction between Ava and Bob is as follows:
+# (2, 'Ava', 'Bob', '@startVideo', 1563733283),
+# (8, 'Ava', 'Bob', 'Yes, that is so funny! haha!', 1563733335),
+# (9,'Ava', 'Bob', '@stopVideo', 1563733356)
+
+# An interaction between an HA and a client is "significant" if its duration is
+# at least 30 seconds.
+
+# For each client, please output the timestamp of @stopVideo of the
+# last significant interaction, ordering by client alphabetically.
+
+# Based the above data, your query should output the following:
+# client last_significant_interaction
+# Adam 1563733334
+# Bob 1563733356
+# Ruth 1563733378
+
+# YOUR SOLUTION MYSQL QUERY HERE
+
+
+Copy/paste your MySQL CodeBunk URL into your solution submission form (but don't submit the form yet).
+
+For your third and final sub-challenge, please watch THIS VIDEO to see what a minimum solution looks like. You may want to skim the instructions below first so that the video makes more sense.
+
+To create your own solution, open a new tab, go to JSFiddle.net, and copy/paste the following code into the Javascript pane (create the necessary HTML and CSS as you see fit in the HTML and CSS panes, and note that you can use any frontend framework you wish):
+
+
+// DO NOT CHANGE THIS CODE!!
+
+var getResponse = function(){
+  var tasks = ["task1", "task2", "task3","task4","task5" ];
+  var devices = ["device1", "device2", "device3","device4","device5", "device6", "device7"];
+  var response = [];
+  devices.forEach(function(device){
+      if (Math.random() >= 0.7){
+          var task_names = [];
+          tasks.forEach(function(task){
+              if (Math.random() >= 0.7){
+                  task_names.push(task);
+              }
+          });
+          if(task_names.length > 0){
+              response.push({"device":device, "tasks":task_names})
+          }
+      }
+  });
+  return response;
+};
+
+/*
+Use the above getResponse function to simulate a response from a periodically recurring HTTP request. Use the response information to create a UI with a column/row structure of the following format"
+
++------------+------------------+
+| Device     | Tasks            |
++------------+------------------+
+| device1    | task3, task4,    |
+|            | task3            |
++------------+------------------+
+| device2    |                  |
++------------+------------------+
+| device3    |                  |
++------------+------------------+
+
+Cause your dynamic UI to (a) add rows for new devices referenced by any response, and (b) add new tasks that come in each response to the list of tasks for the associated device. For example, a response of...
+
+[{"device":"device1","tasks":["task2"]}, {"device":"device2","tasks":["task5", "task4"]}]
+
+...with a starting state matching the above table will result in a new table as follows:
++------------+------------------+
+| Device     | Tasks            |
++------------+------------------+
+| device1    | task3, task4,    |
+|            | task3, task2     |
++------------+------------------+
+| device2    | task5, task4     |
++------------+------------------+
+| device3    |                  |
++------------+------------------+
+
+Also, create a method in the UI of "completing" tasks and making them disappear to make room for new tasks. In the sample solution video, tasks are completed by clicking them.
+
+If you are finished with extra time, please spend your remaining time making a more user-friendly and professional-looking UI.  If possible, we would like to get an idea of your flair for design!
+
+*/
+
+// YOUR SOLUTION JAVASCRIPT CODE HERE
+
+
+Finally, click the Save button in JSFiddle, and copy/paste the JSFiddle URL into your solution submission form. Then, submit!
+
+Please make sure you respond with your solutions to all three sub-challenges NO LATER than a TOTAL of 90 minutes after this email's timestamp.
+
+You may use Google or other search engines and reference materials if you'd like to confirm language syntax or other such details, but please do NOT get help from anybody on this challenge.
+
+Good luck and have fun!
+If you want to unsubscribe from these emails, please use this form.
