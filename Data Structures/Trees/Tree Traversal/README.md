@@ -1,6 +1,8 @@
 # Traversing a Binary Tree
 Traversing a binary tree means moving along multiple paths in the tree.
 When you search for a node, insert a new one, or evaluate the size of a tree, you’re “traversing” it = checking every node in a tree structure.
+Like a normal binary tree, we can traverse a BST in preorder, inorder, postorder or level-order.
+- inorder traversal in BST will be in ascending order = most frequent used traversal method of a BST
 - Not ideal
     - Do it iteratively with a while loop and currentNode pointer to move through the tree until you find what you’re looking for
 - Ideal
@@ -12,10 +14,13 @@ There are two ways that you’ll end up traversing a binary tree — breadth-fir
 ### Breadth-First Search
 In breadth-first search, we start by going wide. We visit each node that’s connected to the root node before moving down to the next level of nodes. Then, we’ll check each node connected to those nodes, move down a level, and so on. Breadth-first search tries to stay as close to the root node as possible before moving on to subsequent parts of the graph.
 - when planning your next move during a chess game, if you are thinking of all posible moves you could move next that's breadth-first thinking
+```
             10
     6               15
 3       8       null    20
 Order = [10,6,15,3,8,20]
+```
+- to move horizontally before vertically
 
 #### Steps - Iteratively
 - create a queue (this can be an array) and a variable to store the values of nodes visited (FIFO)
