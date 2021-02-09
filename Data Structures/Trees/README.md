@@ -27,3 +27,12 @@ A binary tree is a species of tree with one defining feature: Each node has at m
     - The left property, which points to a node with a lesser value than the current node.
     - The right property, which points to a node with greater value than the current node.
 The left and right properties can also be set to null if the node has no child elements.
+
+## Trie
+A trie (pronounced like “try” and short for “retrieval”) is a type of tree in which nodes aren’t limited to only left and right pointers. Instead, each node can store a list of “child” nodes that all represent possible paths forward through the trie.
+- Like a tree, a trie starts with an empty root node that points to child nodes.
+- Each subsequent child node contains two types of data:
+    - A value.
+    - References to other nodes, usually stored in an array.
+- Almost always store alphabetical data
+- The value stored in a node is a single letter, and the references are pointers to other letters that make up a word.

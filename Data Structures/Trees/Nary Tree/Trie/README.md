@@ -2,7 +2,7 @@
 Trie, also called prefix tree, is a special form of a Nary tree.
 
 ## properties
-- a trie is used to store strings yypically
+- a trie is used to store strings typically
 - the root node is associated with an empty string
 - each Trie node represents a string (a prefix)
 - each node might have several children nodes while the paths to different children nodes represent different characters
