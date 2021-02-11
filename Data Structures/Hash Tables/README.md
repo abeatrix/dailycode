@@ -1,8 +1,11 @@
 # Hash Tables
 A hash table is a list-like data structure that’s designed to quickly store and retrieve key data records. To store keys in a hash table, they must be mapped (with a hash function) to the set of possible indices in the table or to addresses of a memory location.
-- to store key-value pairs
+- collections of key-value pairs
 - they are like arrays but the keys are not ordered
 - fast for finding values, adding new values, and removing values, unlike arrays
+- store data in a large array, and work by hashing the keys
+- a good hash should be gast, distribute keys uniformly, and be deterministic
+
 
 
 ## Hashing

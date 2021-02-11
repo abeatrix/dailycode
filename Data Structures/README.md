@@ -20,3 +20,8 @@ A data “structure” is like a container that stores data in a specific, organ
 - Insertion - O(log n)
 - Searching - O(log n)
 - Not guaranteed
+
+### Hash Table
+- Insertion - O(1)
+- Deletion - O(1)
+- Access - O(1)

@@ -45,22 +45,29 @@ class HashTable {
 
     keys(){
         let list = [];
-        this.keyMap.forEach(k=>{
-            for(let v of k) {
-                // check duplicate
-                if(!list.includes(v[0])) list.push(v[0]);
+        for(let i=0;i<this.keyMap.length;i++){
+            if(this.keyMap[i]) {
+                for(let j=0;j<this.keyMap[i].length;j++){
+                    if(!list.includes(this.keyMap[i][j][0])) {
+                        list.push(this.keyMap[i][j][0])
+                    }
+                }
             }
-        })
+        }
         return list;
     }
 
     values(){
         let list = [];
-        this.keyMap.forEach(k=>{
-            for(let v of k) {
-                if(!list.includes(v[1])) list.push(v[1]);
+        for(let i=0;i<this.keyMap.length;i++){
+            if(this.keyMap[i]) {
+                for(let j=0;j<this.keyMap[i].length;j++){
+                    if(!list.includes(this.keyMap[i][j][1])) {
+                        list.push(this.keyMap[i][j][1])
+                    }
+                }
             }
-        })
+        }
         return list;
     }
 }
@@ -74,5 +81,4 @@ ht.set("lightcoral","pizza")
 ht.set("mediumvioletred","pizza")
 ht.set("pulm","456")
 ht.get("maroon")
-ht.keys()
 ht.values()
