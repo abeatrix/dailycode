@@ -24,16 +24,20 @@ class HashTable {
         return total;
     }
 
-    set(key, val){
-        let i = this._hash(key);
+    set(k, v){
+        let i = this._hash(k);
         if(!this.keyMap[i]) this.keyMap[i] = [];
-        this.keyMap[i].push(val);
+        this.keyMap[i].push([k,v]);
     }
 
     get(key){
         let i = this._hash(key);
-        if(!this.keyMap[i]) return undefined;
-        return this.keyMap[i]
+        if(this.keyMap[i]) {
+            for(let [k, v] of this.keyMap[i]){
+                if(k === key) return v
+            }
+        }
+        return undefined;
     }
 }
 
