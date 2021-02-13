@@ -93,7 +93,7 @@ class Graph {
         // call helper for every univisited node
         this.adjacencyList[v].forEach(node => {
             if(!visited.has(node)) {
-                this.helper(node, visited, stack);
+                this.topHelper(node, visited, stack);
             }
         })
         // return false if graph is not a DAG
@@ -101,13 +101,13 @@ class Graph {
         else return false;
     }
 
-    helper(node, visited, stack){
+    topHelper(node, visited, stack){
         // mark the starting node as visited
         visited.add(node)
         // check for dependents, edge is node -> n
         this.adjacencyList[node].forEach(n => {
             if(!visited.has(n)) {
-                this.helper(n, visited, stack)
+                this.topHelper(n, visited, stack)
             }
         })
         // after visiting all dependencies, add node to stack

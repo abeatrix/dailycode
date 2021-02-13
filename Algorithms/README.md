@@ -7,6 +7,11 @@ For example, the base ten logarithm of 100 is 2, because ten raised to the power
 ## Big-O Complexity Chart
 O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 
+# Graph Algorithm
+## Dijkstra's Algorithm
+- native priority queue
+- binary heap priority queue
+
 ## Topological sort
 - For stuations that can be modelled as a graph with directed edges, where some events must oocur before others
     - school class prerequistites

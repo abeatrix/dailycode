@@ -81,6 +81,12 @@ DFS-iterative(start):
 - if it is not inside the object that stores nodes visited mark it as visited, and enqueue the vertex
 - once you have finished looping, return the array of visited nodes
 
+# Directed Acyclic Graph (DAG)
+- a graph with directed edges and no cycles
+- DIRECTED EDGES are required
+- By definition, all tress are DAGs since they do not contain cycles
+- The `Single Source Shortest Path (SSSP)` problem can be solved efficiently on a DAG in O(V+E) time.
+    -- due to the fact that the node can be ordered in a `topological ordering` via topsort and processed sequebntially
 
 ## Topological sort
 - For stuations that can be modelled as a graph with directed edges, where some events must oocur before others
@@ -123,4 +129,36 @@ function topsort(graph):
                 ordering[i] = nodeId
                 i = i-1
     return ordering
+
+# Execute Depth First Search (DFS)
+function dfs(at, V, visitedNodes, graphs):
+    V[at] = true
+    edges = graph.getEdgesOutFromNode(at)
+    for edge in edges:
+        if V[edge.to] == false;
+            dfs(edge.to, V, visitedNodes, graph)
+    visitedNodes.add(at)
+```
+```
+# optimization
+function topsort(graph):
+    N = graph.numberOfNodes();
+    V = [false, ..., false] # Length N
+    ordering = [0, ..., 0] # Length N
+    i = N - 1 # Index for ordering array
+
+    for(at=0; at < N; at++>):
+        if V[at] === false:
+            i = dfs(i, at, V, ordering, graph)
+    return ordering
+
+# Execute Depth First Search (DFS)
+function dfs(i, at, V, ordering, graphs):
+    V[at] = true
+    edges = graph.getEdgesOutFromNode(at)
+    for edge in edges:
+        if V[edge.to] == false;
+            dfs(i, edge.to, V, ordering, graph)
+    ordering[i] = at
+    return i - 1
 ```
