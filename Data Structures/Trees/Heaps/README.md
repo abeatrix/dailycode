@@ -14,6 +14,20 @@
 - Binary Heaps are used to implement Priority Queues, which are very commonly used data Structures
 - often use with graph traversal algorithms
 
+## Priority Queue
+- A data structure wher each element has a priority. Elements with higher priorities are served before elements with lower priorities.
+
+## PQ - Steps
+1. write a min binary heap - lower number means higher priority
+1. each node has a val and a priority
+    1. use priority to build the heap
+1. enqeueu method accepts a val and priorty
+    1. makes a new node
+    1. put it in the right spot based off its priority
+1. dequeue method removes root element
+    1. returs it
+    1. rearranges heap using priority
+
 ## Max Heaps and Min Heaps
 - Each parent has at most two child nodes
 - the value of each parent node is always greater than its child nodes
