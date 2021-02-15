@@ -3,15 +3,17 @@
 - VERY similar to a binary search tree but with diff rules
     - no orders
     - no relationships
-- Two types of heaps
+- Two types of Heaps
     - Max Heaps
         - parent nodes are always larger than child nodes
     - Min Heaps
         - parent nodes are always smaller than child nodes
-- store in array / set
+- store in array / set with a little bit of math
+- Binary Heaps are used to implement Priority Queues, which are very commonly used data Structures
 
 ## Purpose
-- Binary Heaps are used to implement Priority Queues, which are very commonly used data Structures
+- Userful Data Structures for sorting
+- Useful to implement other Data Structures like Priority Queues
 - often use with graph traversal algorithms
 
 ## Priority Queue

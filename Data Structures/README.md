@@ -3,18 +3,20 @@
 ## Big Os of Data Stucture
 A data “structure” is like a container that stores data in a specific, organized layout. 
 
-### stacks:
+## Chart
+<img src="./assets/bigOchart.png">
+
+### Stacks:
 - insertion - O(1)
 - removal - O(1)
 - searching - O(N)
 - Access - O(N)
 
-### queus:
+### Queus:
 - insertion - O(1)
 - removal - O(1)
 - searching - O(N)
 - Access - O(N)
-
 
 ### BST
 - Insertion - O(log n)
@@ -25,6 +27,11 @@ A data “structure” is like a container that stores data in a specific, organ
 - Insertion - O(1)
 - Deletion - O(1)
 - Access - O(1)
+
+### Binary Heaps
+- Insertion - O(log N)
+- Removal - O(log N)
+- Search - O(N)
 
 ### Adjacency Matrix
 - V - number of vertices
