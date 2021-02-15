@@ -6,7 +6,13 @@ A hash table is a list-like data structure that’s designed to quickly store 
 - store data in a large array, and work by hashing the keys
 - a good hash should be gast, distribute keys uniformly, and be deterministic
 
-
+## Terms
+| Concept           | Definition             |
+| Hash table        | A data structure that uses a key to sort an index into a table. |
+| Hash function     | Takes a key, scrambles it, and outputs an index to be used in a hash table. |
+| Collisions        | When a hash function generates the same index for two different values. |
+| Linear probing    | A resolution for collisions that uses probing (searching for other indices in the table). |
+| Chaining          | A resolution for collisions that creates “chains” of other data structures at each index. |
 
 ## Hashing
 hashing refers to the process of taking a key (i.e., a piece of data), scrambling it with an algorithm, and producing an index that’s used to sort the key into a hash table
