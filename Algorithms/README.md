@@ -7,12 +7,20 @@ For example, the base ten logarithm of 100 is 2, because ten raised to the power
 ## Big-O Complexity Chart
 O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 
-# Graph Algorithm
-## Dijkstra's Algorithm
+## Graph Algorithm
+
+### Dijkstra's Algorithm
 - native priority queue
 - binary heap priority queue
+- one of the most famous and widely used algorithm
+- Finds the SHORTEST path between two certices on a weighted graph
+    - "what's the fastest way to get from point A to point B"
 
-## Topological sort
+### Edsger Dijkstra
+- a Dutch programmer, physicist, essayist
+- advanced the field of Computer Science to an academic discipline
+
+### Topological Sort Algorithm
 - For stuations that can be modelled as a graph with directed edges, where some events must oocur before others
     - school class prerequistites
     - Program dependencies
@@ -21,7 +29,7 @@ O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
     - etc
 - for problems that required ordering
 
-### A topological ordering
+#### A topological ordering
 - an ordering of the nodes in a directed graph where for each directed edge from node A to node B, node A appears before node B in the ordering
 - The topological sort algorithm can find a topological ordering in O(V+E) time
 - topological orderings are NOT unique
@@ -30,13 +38,13 @@ O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 - a graph which contains a cycle, cannot have a valid ordering, and cannot use top sort
 - by definition all rooted trees have a topological ordering since they do not contain any cycles
 
-### Topological Sort Algorithm
+#### Steps
 - DFS recursion call stack
     1. Pick an unvisited node
     1. Beginning with the selected node, do a DFS, exploring only unvisited nodes
     1. On the recursive callback of the DFS,  add the current node to the top-ordering in reverse order.
 
-### pseudocode
+### Pseudocode
 ```
 # Assumption: graph is sotred as adjancency list
 function topsort(graph):
