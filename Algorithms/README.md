@@ -1,15 +1,9 @@
 # Study Note
 
-A Logarithm is the power to which a number must be raised in order to get some other number.
-For example, the base ten logarithm of 100 is 2, because ten raised to the power of two is 100:
-```log 100 = 2``` < = > ```10^2 = 100```
-
 ## Big-O Complexity Chart
 O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 
-## Graph Algorithm
-
-### Dijkstra's Algorithm
+## Dijkstra's Algorithm (Graph)
 - native priority queue
 - binary heap priority queue
 - one of the most famous and widely used algorithm
@@ -20,7 +14,13 @@ O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 - a Dutch programmer, physicist, essayist
 - advanced the field of Computer Science to an academic discipline
 
-### Topological Sort Algorithm
+### Walkthrough / Steps
+1. Every time we look to visit a new node, we pick the node with the smallest known distance to visit first
+1. Once we've moved to the node we're going to visit, we look at each of it's neighbors
+1. For each neighboring node, we calculate the distance by summing the total edges that lead to the node we're checking from the starting node
+1. If the new total distance to a node is less than the previous total, we store the new shorter distance for that node
+
+## Topological Sort Algorithm (Graph)
 - For stuations that can be modelled as a graph with directed edges, where some events must oocur before others
     - school class prerequistites
     - Program dependencies
@@ -29,7 +29,7 @@ O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
     - etc
 - for problems that required ordering
 
-#### A topological ordering
+### A Topological Ordering
 - an ordering of the nodes in a directed graph where for each directed edge from node A to node B, node A appears before node B in the ordering
 - The topological sort algorithm can find a topological ordering in O(V+E) time
 - topological orderings are NOT unique
@@ -38,7 +38,7 @@ O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 - a graph which contains a cycle, cannot have a valid ordering, and cannot use top sort
 - by definition all rooted trees have a topological ordering since they do not contain any cycles
 
-#### Steps
+### Walkthrough / Steps
 - DFS recursion call stack
     1. Pick an unvisited node
     1. Beginning with the selected node, do a DFS, exploring only unvisited nodes

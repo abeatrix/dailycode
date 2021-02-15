@@ -3,6 +3,83 @@ A graph is a collection of nodes, which store data, and edges, which represent r
 - a collection of nodes + connections between nodes
 - consists of a finite (and possibly mutable) set of vertices or nodes or points
 - together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph
+- Graphs are categorized as
+    - undirected (having a mutual connection between nodes)
+    - directed (pointing from one node to another)
+- Graphs can be implemented in two ways:
+    - more commonly as an adjacency list, using a collection of arrays,
+    - or as an adjacency matrix, using an array of arrays.
+
+
+## Graphs vs. Trees
+- The nodes and edges of a graph might sound similar to the nodes and edges of a tree. However, while both data structures use nodes to store data, the edges in a graph are a lot more flexible than the edges in a tree (especially the ones in a binary tree).
+- Trees represent data that's hierarchical in nature. Each node is connected to one "parent node" above it and one or two "children nodes" below it. By contrast, graphs represent relationships between data generally, not just hierarchically. In a graph, a node can have many edges to other nodes, and we don't use "parent / child" language to describe the relationships between nodes.
+- Instead, we describe the edges in a graph as undirected (a mutual connection between nodes) or directed (pointing from one node to another). Undirected and directed edges define how we categorize graphs.
+
+## Undirected and Directed Graphs
+- Undirected Graphs
+    - edges are used to form a connection between two nodes, but these edges do not point from one node to another.
+    - Think of “friending” someone on Facebook: It’s a mutual connection that both parties accept, making it an undirected graph.
+- Directed Graphs
+    - In a directed graph, edges have a direction, meaning that they point from one node to another.
+    - Think of liking someone’s post on Facebook: You’ve established a connection between you and the post, but the connection only points that way.
+
+## Representing Graphs
+- There are also two ways to represent a graph in code:
+    - an adjacency list
+    - an adjacency matrix
+- Difference? - Big O efficiency!
+    - An adjacency list uses a collection of arrays for each node.
+    - An adjacency matrix is represented by a two-dimensional array.
+
+## adjacency list
+- An adjacency list is the more commonly used graph representation.
+- In an adjacency list, a graph is represented with a collection of arrays for each node.
+- Each key-value pair represents a node.
+- The key is the value of the node, and the value is an array of edges to other nodes:
+```
+let graph = {
+  'A': ['B', 'E'],
+  'B': ['A', 'C', 'D', 'E'],
+  'C': ['B', 'D'],
+  'D': ['B', 'C', 'E'],
+  'E': ['A', 'B', 'D'],
+}
+```
+
+## adjacency matrix
+- a graph is represented by a two-dimensional array (an array of arrays).
+- Each subarray is a node, and the values in the node represent edges to other nodes.
+- Below where a 1 represents an edge and a 0 represents a lack of an edge:
+```
+ let graph = [
+  [0, 1, 0, 0, 1, 1],
+  [1, 0, 0, 0, 1, 0],
+  [0, 1, 1, 1, 0, 0],
+  [0, 0, 1, 0, 1, 0],
+  [1, 1, 1, 0, 0, 0],
+]
+```
+
+## Big O efficiency
+- Lookup
+    - Adjacency List O(N)
+    - Adjacency Matrix O(1)
+- Add a node
+    - Adjacency List O(1)
+    - Adjacency Matrix O(N^2)
+- Remove a node
+    - Adjacency List O(N+E)
+    - Adjacency Matrix O(N^2)
+- Add an edge
+    - Adjacency List O(1)
+    - Adjacency Matrix O(1)
+- Remove an edge
+    - Adjacency List O(E)
+    - Adjacency Matrix O(1)
+- Memory
+    - Adjacency List O(N+E)
+    - Adjacency Matrix O(N^2)
 
 ## Terms
 - Vertex

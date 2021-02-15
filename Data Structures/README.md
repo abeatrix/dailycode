@@ -1,7 +1,10 @@
 # DS Study Note
 
 ## Big Os of Data Stucture
-A data “structure” is like a container that stores data in a specific, organized layout. 
+- A data “structure” is like a container that stores data in a specific, organized layout. 
+- A Logarithm is the power to which a number must be raised in order to get some other number.
+- For example, the base ten logarithm of 100 is 2, because ten raised to the power of two is 100:
+```log 100 = 2``` < = > ```10^2 = 100```
 
 ## Chart
 <img src="./assets/bigOchart.png">
