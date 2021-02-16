@@ -32,7 +32,19 @@ class WeightedGraph {
     }
 
     Dijkstra(start, finish){
+        const nodes = new PriorityQueue();
+        const distance = {};
+        const prev = {};
 
+        // build up initial state
+        for(let vertex in this.adjacencyList){
+            if(vertex === start){
+                distances[vertex] = 0;
+            } else {
+                distances[vertex] = Infinity;
+            }
+        }
+        console.log(distances)
     }
 }
 

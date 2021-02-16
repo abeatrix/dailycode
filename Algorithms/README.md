@@ -3,6 +3,16 @@
 ## Big-O Complexity Chart
 <img src="./assets/bigOchart.png"
 
+## Dynamic Programming
+- a method for solving a complex problem by breaking it down into a collection of simpler subproblems
+- solving each of those subproblems just once, and storing their solutions
+- only work on problems with
+    - optimal substructure
+        - if an optimal solution can be constructed from opimal solutions of its subproblems
+    - overlapping subproblems
+        - if it can be broken down into subproblems which are reused serveral times.
+            - fibonacci swquence (every number after the first two is the sum of the two preceding ones)
+
 ## Dijkstra's Algorithm (Graph)
 - native priority queue
 - binary heap priority queue
