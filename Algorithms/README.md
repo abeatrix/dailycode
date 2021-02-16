@@ -1,7 +1,7 @@
 # Study Note
 
 ## Big-O Complexity Chart
-O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
+<img src="./assets/bigOchart.png"
 
 ## Dijkstra's Algorithm (Graph)
 - native priority queue
@@ -19,6 +19,21 @@ O(log n), O(1) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
 1. Once we've moved to the node we're going to visit, we look at each of it's neighbors
 1. For each neighboring node, we calculate the distance by summing the total edges that lead to the node we're checking from the starting node
 1. If the new total distance to a node is less than the previous total, we store the new shorter distance for that node
+
+### Pseudocode
+1. This function should accept a starting and ending vertex
+1. create an object (distance) and set each key to be every vertexi n the adjacency list with value of infinity, except for the starting vertex which should have a value of 0
+1. After setting a value in the distances object, add each vertex with a priority of Infinity to the priority queue, except the starting vertex, which should have a priority of 0 because that's where we begin.
+1. Create another object called previous and set each key to be every vertex in the adjacency list with a value of null
+1. Start looping as long as there is anying in the priority queue
+    1. dequeue a vertex from the priority queue
+    1. If that vertex is the same as the ending vertex - done!
+    1. otherwise loop through each value in the adjacency list at that vertex
+        1. calculate the distance to the vertex from the starting vertex
+        1. if the distance is less than what is currently stored in our distances object
+            1. update the distances object with new lower distance
+            1. update the previous object to contain that vertex
+            1. enqueue the vertex with the total distance from the start node
 
 ## Topological Sort Algorithm (Graph)
 - For stuations that can be modelled as a graph with directed edges, where some events must oocur before others
