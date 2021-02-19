@@ -2,7 +2,7 @@
 
 var findDuplicate = function(paths) {
     let map = new Map();
-    paths.forEach((p, i) => {
+    paths.forEach(p => {
         p = p.split(" ");
         let root = p.shift();
         while(p.length){

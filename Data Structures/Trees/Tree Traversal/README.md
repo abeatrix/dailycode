@@ -48,6 +48,12 @@ In depth-first search, we start by going deep. First we visit the root node, the
 - when planning your next move during a chess game, if you pick one move and figure out how far it could take you that's depth-first thinking
 
 ##### Depth-First Search - Pre-Order
+1. create a variable to store the values of nodes visited
+1. store the root of the BST in a variable called current
+1. Write a helper function which accepts a node
+    1. Push the value of the node to the variable that stores the values
+    1. If the node has a left property, call the helper function with the left property on the node
+    1. If the node has a right property, call the helper function with the right property on the node
 ```
 From parent to child, left to right
 
@@ -59,6 +65,13 @@ Order = [10,6,3,8,15,20]
 ```
 
 ##### Depth-First Search - Post-Order
+1. Create a variable to store the values of nodes visited
+1. Store the root of the BST in variable called current
+1. Write a helper function which accepts a node
+    1. if the node has a left property, call the helper function with the left property on the node
+    1. if the node has a right property, call the helper function with the right property on the node
+    1. push the value of the node to the variable that stores the values
+1. invoke the helper function with the current variable
 ```
 From child to parent, left to right
 
@@ -70,6 +83,13 @@ Order = [3,8,6,20,15,10]
 ```
 
 ##### Depth-First Search - In-Order
+1. Create a variable to store the values of nodes visited
+1. Store the root of the BST in variable called current
+1. Write a helper function which accepts a node
+    1. if the node has a left property, call the helper function with the left property on the node
+    1. push the value of the node to the variable that stores the values
+    1. if the node has a right property, call the helper function with the right property on the node
+1. invoke the helper function with the current variable
 ```
             10
     6               15
