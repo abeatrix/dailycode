@@ -35,15 +35,20 @@ class WeightedGraph {
         const nodes = new PriorityQueue();
         const distance = {};
         const prev = {};
-
+        let smallest;
         // build up initial state
         for(let vertex in this.adjacencyList){
             if(vertex === start){
                 distances[vertex] = 0;
+                nodes.enqueue(vertex, 0);
             } else {
                 distances[vertex] = Infinity;
+                nodes.enqueue(vertex, Infinity);
             }
+            previous[vertex] = null;
         }
+        // as long as there is something to visit
+        while(nodes.)
         console.log(distances)
     }
 }
