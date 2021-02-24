@@ -13,6 +13,11 @@
         - if it can be broken down into subproblems which are reused serveral times.
             - fibonacci swquence (every number after the first two is the sum of the two preceding ones)
 
+### Tabulation
+- Storying the result of a previous result in a "table" (usually an array)
+- usually done using iteration
+- better space complexity acn be achieved using tabulation
+
 ## Dijkstra's Algorithm (Graph)
 - native priority queue
 - binary heap priority queue

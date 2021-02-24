@@ -10,3 +10,19 @@ class Solution {
         return nums
     }
 }
+function solve(matrix) {
+    matrix = [...matrix[0], ...matrix[1]]
+    ans = []
+    for(let i=0;i<matrix.length;i++){
+      if(i-1=0) matrix[i] = matrix[i]+ans[0]
+      else{
+        matrix[i] = ans.reduce((a,b)=>a+b)
+      }
+      ans.push(matrix[i])
+    }
+    let a = matrix.slice(0,2)
+    let b = matrix.slice(2)
+    return [a, b]
+}
+solve([[2, 3],[5, 7]])
+solve([     [],     [] ])

@@ -4,7 +4,6 @@ var preorderTraversal = function (root) {
   let x = [];
   let bfs = (node) => {
     if (!node) return;
-
     x.push(node.val);
     bfs(node.left);
     bfs(node.right);

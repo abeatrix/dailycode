@@ -1,8 +1,8 @@
+
 class Node {
     constructor(val, priority){
         this.val = val;
         this.priority = priority;
-        // this.addTime = Data.now(); // if they have same priority, check which one is added to queue first
     }
 }
 
@@ -23,7 +23,7 @@ class PriorityQueue {
         while(i>0){
             let parenti = Math.floor((i-1)/2);
             let parent = this.values[parenti];
-            if(element.priority <= parent.priority) break;
+            if(element.priority >= parent.priority) break;
             this.values[parenti] = element;
             this.values[i] = parent;
             i = parenti;
@@ -31,34 +31,34 @@ class PriorityQueue {
     }
 
     dequeue(){
-        let max = this.values[0],
+        let min = this.values[0],
             end = this.values.pop();
         if(this.values.length>0){
             this.values[0] = end;
             this.bubbleDown();
         }
-        return max;
+        return min;
     }
 
     bubbleDown(){
         let i = 0,
-            n = this.values.length,
-            e = this.values[0];
+            n = this.values.length, // length
+            e = this.values[0]; // element
         while(true) {
-            let li = 2*i+1,
-                ri = 2*i+1,
-                l, r,
+            let leftChildIdx = 2*i+1,
+                rightChildIdx = 2*i+2,
+                leftChild, rightChild,
                 swap = null;
-            if(li < n){
-                l = this.values[li];
-                if(l.priority > e.priority) {
-                    swap = li
+            if(leftChildIdx < n){
+                leftChild = this.values[leftChildIdx];
+                if(leftChild.priority > e.priority) {
+                    swap = leftChildIdx
                 };
             }
-            if(ri < n){
-                r = this.values[ri];
-                if((swap === null && r.priority > e.priority) || (swap!=null && r.priority > l.priority)) {
-                    swap = ri;
+            if(rightChildIdx < n){
+                rightChild = this.values[rightChildIdx];
+                if((swap === null && rightChild.priority < e.priority) || (swap!=null && rightChild.priority < leftChild.priority)) {
+                    swap = rightChildIdx;
                 }
             }
             if(swap === null) break;
@@ -68,6 +68,7 @@ class PriorityQueue {
         }
     }
 }
+
 
 let ER = new PriorityQueue();
 ER.enqueue("common cold", 5);

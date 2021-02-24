@@ -12,8 +12,8 @@ class PriorityQueue {
         return this.values.shift();
     };
 
-    sort() { //O(N*log(N))
-        this.values.sort((a,b) => a,priority - b.priority);
+    sort() {
+        this.values.sort((a,b) => a.priority - b.priority);
     };
 }
 
@@ -32,24 +32,65 @@ class WeightedGraph {
     }
 
     Dijkstra(start, finish){
+
         const nodes = new PriorityQueue();
-        const distance = {};
-        const prev = {};
+        const distances = {};
+        const previous = {};
         let smallest;
-        // build up initial state
+        let path = []
+
         for(let vertex in this.adjacencyList){
+
             if(vertex === start){
+
                 distances[vertex] = 0;
                 nodes.enqueue(vertex, 0);
+
             } else {
+
                 distances[vertex] = Infinity;
+
                 nodes.enqueue(vertex, Infinity);
+
             }
             previous[vertex] = null;
+
         }
-        // as long as there is something to visit
-        while(nodes.)
-        console.log(distances)
+
+        while(nodes.values.length){
+
+            smallest = nodes.dequeue().val;
+
+            if(smallest === finish){
+
+                while(previous[smallest]){
+                    path.push(smallest);
+                    smallest = previous[smallest];
+                }
+                break;
+
+            } if(smallest || distances[smallest]!==Infinity){
+
+                for(let neighbor in this.adjacencyList[smallest]){
+                    let nextNode = this.adjacencyList[smallest][neighbor];
+                    let candidate = distances[smallest] + nextNode.weight;
+                    let nextNeighbor = nextNode.node;
+
+                    if(candidate<distances[nextNode.node]){
+
+                        distances[nextNeighbor] = candidate;
+
+                        previous[nextNeighbor] = smallest;
+
+                        nodes.enqueue(nextNeighbor, candidate);
+                    }
+
+                }
+            }
+        }
+
+        return path.concat(smallest).reverse();
+
     }
 }
 
@@ -68,4 +109,7 @@ graph.addEdge("C", "F", 4);
 graph.addEdge("D", "E", 3);
 graph.addEdge("D", "F", 1);
 graph.addEdge("E", "F", 1);
-graph.adjacencyList;
+graph.Dijkstra("A", "E");
+
+
+
