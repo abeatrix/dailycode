@@ -1,20 +1,4 @@
-class Solution {
-    solve(words) {
-        let word;
-        let result = words[0].toLowerCase();
-        for(let i = 1; i < words.length; i++){
-            word = words[i];
-            result += capitalize(word);
-        }
-        return result;
-
-
-        function capitalize(str){
-            return str.charAt(0).toUpperCase() + (str.slice(1, str.length)).toLowerCase();
-        }
-    }
-}
-
+// 6ms, 98%
 class Solution {
     solve(words) {
         let out = words[0].toLowerCase()
@@ -28,3 +12,44 @@ class Solution {
 
 solve(["java", "beans"]
 )
+
+
+// 10ms, 92%
+class Solution {
+    solve(words) {
+        let ans = words[0].toLowerCase()
+        for(let i=1; i<words.length;i++){
+            words[i] = words[i].toLowerCase();
+            ans+= words[i].charAt(0).toUpperCase()+words[i].substring(1)
+        }
+        return ans
+
+    }
+}
+
+// 12ms, 85%
+class Solution {
+    solve(words) {
+        let ans = words[0].toLowerCase()
+        for(let i=1; i<words.length;i++){
+            ans+= words[i].charAt(0).toUpperCase()+words[i].substring(1).toLowerCase();
+        }
+        return ans
+
+    }
+}
+
+// 21ms, 13%
+class Solution {
+    solve(words) {
+        let ans = words[0].toLowerCase()
+        for(let i=1; i<words.length;i++){
+            words[i] = words[i].toLowerCase().split("")
+            words[i][0] = words[i][0].toUpperCase()
+            words[i] = words[i].join("")
+            ans+=words[i]
+        }
+        return ans
+
+    }
+}
