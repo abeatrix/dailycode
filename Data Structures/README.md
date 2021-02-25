@@ -21,6 +21,12 @@
 - searching - O(N)
 - Access - O(N)
 
+### Doubly Linked Lists
+- insertion - O(1)
+- removal - O(1)
+- searching - O(N) / O(N/s) - still O(N)
+- Access - O(N)
+
 ### BST
 - Insertion - O(log n)
 - Searching - O(log n)

@@ -7,3 +7,71 @@
 - return the doubly Linked List
 
 ## Pop
+- if there is no head, return undefined
+- store current tail in a variable to return later
+- if the length is 1, set the head and tail to be null
+- update the tail to be the previous node
+- set the newTail's next to null
+- decrement the length
+- return the removed value
+
+## Shift
+- if the length is 0 return undefined
+- store the current head property in a variable (old head)
+- if the length is one
+    - set the head to be null
+    - set the tail to be null
+- update the head to be the next of the old head
+- set the head's prev property to null
+- set the old head's next to null
+- decrement the length
+- return the removed value
+
+## Unshift
+- create a new node with the new value
+- if the length is 0
+    - set the head to be the new node
+    - set the tail to be the new node
+- Otherwise
+    - set the prev property on the head of the list to be the new node
+    - set the next property on the new node to be the head property
+    - update the head to be the new node
+- increment the length
+- return the list
+
+
+## Get
+- if the index is less than 0 or greater or euqal to the length, return null
+- if the index is less than or equal to half the length of the list
+    - loop through the list starting from the head and loop towards the middle
+    - return the node once it is found
+- if the index is greater than half the length of the list
+    - Loop through the list starting from the tail and loop towards the middle
+    - return the node once it is found
+
+## Set
+- create a variable which is the result of the get method at the index
+    - if the get method returns a valid node
+        - et the value of that node to be the new val
+        - return true
+    - else, return false;
+
+## Insert
+- if the index is less than 0 or greater than or equal to the length
+    - return false
+- if the index is 0, unshift
+- if the index is the same as length, push
+- use get meothd to access the index -1
+- set the next and prev properties on the correct nodes to link together
+- increment the length
+- return true
+
+## Remove
+- if the index is less than zero or greater than or equal to the length return undefined
+- if the index is 0, shift
+- if the index is the same as the length-1, pop
+- Use the get method to retrieve the item to be removed
+- update the next and prev properties to remove the found node from list
+- set next and prev to null on the found node
+- decrement the length
+- return the removed node
