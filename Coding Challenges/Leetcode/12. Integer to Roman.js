@@ -1,26 +1,35 @@
+/**
+ * @param {number} num
+ * @return {string}
+ */
 var intToRoman = function(num) {
-    let roman = {
-        1: "I",
-        5: "V",
-        10: "X",
-        50: "L",
-        100: "C",
-        500: "D",
-        1000: "M",
-    };
-    let a = "", b = 1;
+    const n = [1000, 500, 100, 50, 10, 5, 1]
+    const l = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
     
-    while(num>0){
-        let d = Math.floor(num%10);
-        if(d==4 || d==9) a=roman[b]+roman[d*b+b]+a
-        else if(d==1 || d>=5) a=roman[d*b]+a
-        else if(d<5) a=roman[b]*d+a
-        else a=roman[5*b]+roman[1*b]*(d-5)+a
-        d = d/10
-        b *= 10
+    let ans = "", i = 0;
+    
+    while(i<n.length){
+        let d = Math.floor(num/n[i]);
+        num = num%n[i]
+        if (d==4) {
+            ans += l[i]+l[i-1]
+        } else if (d==9) {
+            ans += l[i]+l[i-2]
+        } else {
+            if (d>4) ans += l[i-1]+l[i].repeat(d-5)
+            else ans += l[i].repeat(d)
+        }
+        i+=2
     }
-    
-    return a
+    return ans
 };
 
-intToRoman(1994)
+var intToRoman = function (num) {
+    const letters = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+    let ans = '';
+    Object.entries(letters).forEach(([r, n]) => {
+        ans += r.repeat(Math.floor(num / n));
+        num %= n;
+    });
+    return ans;
+}
