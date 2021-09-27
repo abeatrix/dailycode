@@ -1,3 +1,14 @@
+/**
+ * @param {Array<(arg: any) => any>} funcs 
+ * @return {(arg: any) => any}
+ */
+function pipe(funcs) {
+	// your code here
+	return function(x){
+		return funcs.reduce((acc, func) => func(acc), x);
+	}
+}
+
 function pipe(funcs) {
     // your code here
   return (val) =>{
@@ -9,5 +20,5 @@ function pipe(funcs) {
 
 // loop over the array then return then return it
 
-
-// const pipe = (fns) => (x) => fns.reduce((y, fn) => fn(y), x)
+// y = pre value, x = new value
+// const pipe = (funcs) => (x) => funcs.reduce((y, func) => func(y), x)
