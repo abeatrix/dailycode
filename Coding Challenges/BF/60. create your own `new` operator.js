@@ -3,6 +3,27 @@
  * @param {any[]} args - argument passed to the constructor
  * `myNew(constructor, ...args)` should return the same as `new constructor(...args)`
  */
+function myNew(constructor, ...args) {
+    let con = Object.create(constructor.prototype);
+    return constructor.apply(con, args) || con;
+}
+// alt 0
+const myNew = (constructor, ...args) => {
+    // your code here
+    let con = {__proto__: constructor.prototype}
+    let obj = constructor.apply(con, args);
+    return obj || con;
+}
+// alt 1
+function myNew(constructor, ...args) {
+    // your code here
+    let con = Object.create(constructor.prototype);
+    let obj = constructor.apply(con, args);
+    if(typeof obj ==='object') return obj;
+    else return con;
+}
+
+// alt 2 using new
 class Constructor {
     constructor(prototype){
         this.__proto__ = prototype;
@@ -17,33 +38,13 @@ function myNew(constructor, ...args) {
     if(typeof obj ==='object') return obj;
     else return con;
 }
-
-// alt
+// alt 3
 function myNew(constructor, ...args) {
     // your code here
-    let con = Object.create(constructor.prototype || constructor.prototype, args);
-    let obj = constructor.apply(con, args);
-    if(typeof obj ==='object') return obj;
-    else return con;
+    function construct() {
+        let con = Object.create(constructor.prototype);
+        this.apply(con, args)
+        return con;
+    }
+    return construct();
 }
-
-const myNew = (constructor, ...args) => {
-    // 1. A new object is created, inheriting from constructor's prototype.
-    var that = Object.create(constructor.prototype);
-  
-    // 2. The constructor function is called with the specified arguments,
-    //    and with this bound to the newly created object.
-    var obj =  constructor.apply(that, args);
-    
-    // 3. The object (not null, false, 3.1415 or other primitive types) returned by the constructor function becomes the result of the whole new expression.
-    //    If the constructor function doesn't explicitly return an object, 
-    //    the object created in step 1 is used instead (normally constructors don't return a value, but they can choose to do so if they want to override the normal object creation process).
-    if(obj && typeof obj === 'object')
-    {
-      return obj;
-    }
-    else
-    {
-      return that;
-    }
-  }

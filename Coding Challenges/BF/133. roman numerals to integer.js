@@ -12,6 +12,17 @@ function romanToInteger(str){
     return sum;
 }
 
+function romanToInteger(str) {
+    let map = {'M': 1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}, sum = 0, lastCheck = 0;
+    for(let c of str){
+        let num = map[c]
+        if(num>lastCheck) sum+=num-lastCheck-lastCheck;
+        else sum+= num;
+        lastCheck = num;
+    }
+    return sum;
+}
+
 romanToInteger('CXXIII') // 123
 romanToInteger('MCMXCIX') // 1999
 romanToInteger('MMMCDXX') // 3420

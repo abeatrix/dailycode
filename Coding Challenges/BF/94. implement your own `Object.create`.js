@@ -29,3 +29,8 @@ if (typeof proto !== 'object' || !proto) throw "error";
 let con = { __proto__: proto};
 return con
 }
+
+// OR
+function myObjectCreate(proto) {
+    return { __proto__: proto.prototype || proto }
+}
