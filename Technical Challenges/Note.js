@@ -103,3 +103,31 @@ DFSInOrder(){
     return data;
 }
 
+function his(n){
+    let ans = ["", "", "", "", ""];
+    for(let i=0; i<n; i++){
+        let num = Math.floor(Math.random()*100)
+        ans[Math.floor(num/20)] +='*'
+    }
+    console.log(ans.join('\n').toString())
+
+}
+his(10)
+
+function count(str) {
+
+    const map = new Map();
+    const results = [];
+
+    for (let char of str) {
+        map.set(char, map.get(char)+1 || 1);
+    }
+
+    const max = Math.max(...map.values());
+
+    for (const [key, value] of map) {
+        if (value === max) results.push(key);
+    }
+
+    return results.length === 1 ? results[0] : results;
+}

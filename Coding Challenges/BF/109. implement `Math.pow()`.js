@@ -6,6 +6,5 @@ function pow(base, power){
     while(--i){
         ans*=base
     }
-    if(power<0) return 1/ans;
-    return ans;
+    return power > 0 ? ans : 1/ans;
 }
